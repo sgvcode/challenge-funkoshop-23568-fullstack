@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -35,11 +35,36 @@
     </header>
 
     <main class="container">
-        <section class="container cart__content">
-            <h1 class="cart__title">CARRITO DE COMPRAS</h1>
-        </section>
-        <section class="cart__products">
+        <section class="cart__items--shop">
+            <article class="cart__content">
+                <h1 class="cart__title">CARRITO DE COMPRAS</h1>
+            </article>
+            <article class="row cart__header">
+                <span class="col-1 cart__header--title text-dark"></span>
+                <span class="col-4 cart__header--title text-dark">detalle de producto</span>
+                <span class="col-3 cart__header--title text-dark">cantidad</span>
+                <span class="col-3 cart__header--title text-dark">total</span>
+                <span class="col-1 cart__header--title text-dark"></span>
+            </article>
+            <article class="row cart__header item__list">
+                <span class="col-1 text-dark"><img src="../../img/star-wars/baby-yoda-1.webp" alt=""></span>
+                <div class="col-4 card-item__detail">
+                    <h2 class="card-item__name">BABY YODA BLUEBALL</h2>
+                    <p class="card-item__licence">star wars</p>
+                    <p class="card-item__price price">precio unitario: $1799,99</p>
+                </div>
+                <div class="cart__precio">
+                    <input class="items__input" type="text" name="quantity" id="quantity" placeholder="0">
+                    <div class="">
+                        <button id="add" class="items__cart--mas">+</button>
+                        <button id="substract" class="items__cart--menos">-</button>
+                    </div>
+                </div>
 
+                <span class="col-3 text-dark">cantidad</span>
+                <span class="col-3 text-dark">total</span>
+                <span class="col-1 text-dark"></span>
+            </article>
         </section>
     </main>
 
@@ -61,6 +86,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
+    <script src="../../js/items.js"></script>
 </body>
 
 </html>
