@@ -2,19 +2,21 @@
 @import url('https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.core.min.css');
 @import url('https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.theme.min.css');
 
+/* COMPONENTES */
 /* Variables */
 @import url('./components/variables.css');
 
 /* Reset Navegadores */
 @import url('./components/reset.css');
 
-/* Sliders Ultimos Lanzamientos & Productos Relacionados */
-@import url('./components/slider.css');
-
 /* Header y Footer */
 @import './components/header.css';
 @import './components/footer.css';
 
+/* Sliders Ultimos Lanzamientos & Productos Relacionados */
+@import url('./components/slider.css');
+
+/* PAGES */
 /* Página Items */
 @import './pages/items.css';
 
@@ -30,7 +32,7 @@
 @import './pages/cart.css';
 
 
-/* INDEX */
+/* INDEX (styles) */
 /* Hero */
 .hero {
     background-image: url("../img/funkos-banner.webp");

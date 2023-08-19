@@ -1,10 +1,10 @@
 .cart__content {
     margin: var(--spacing-68) auto;
-    min-height: 400px;
+    min-height: 35vh;
 }
 
 .cart__title {
-    display: inline;
+    display: inline-block;
     font-family: var(--font-inter);
     font-weight: 600;
     font-size: var(--font-46-display);
