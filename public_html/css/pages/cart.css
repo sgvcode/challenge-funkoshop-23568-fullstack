@@ -1,0 +1,12 @@
+.cart__content {
+    margin: var(--spacing-68) auto;
+    min-height: 400px;
+}
+
+.cart__title {
+    display: inline;
+    font-family: var(--font-inter);
+    font-weight: 600;
+    font-size: var(--font-46-display);
+    border-bottom: 4px solid var(--rojo);
+}
