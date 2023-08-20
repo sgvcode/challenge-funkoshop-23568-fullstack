@@ -98,3 +98,13 @@ input:focus::placeholder {
     border: 2px solid var(--fondo-oscuro);
     border-radius: 3px;
 }
+
+.form__lost {
+    text-align: center;
+    color: var(--azul);
+    font-size: var(--font-16-small);
+}
+
+.form__lost:hover {
+    color: var(--azul-70);
+}
