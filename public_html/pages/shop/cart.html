@@ -37,35 +37,86 @@
     <main class="container">
         <section class="cart__items--shop">
             <article class="cart__content">
-                <h1 class="cart__title">CARRITO DE COMPRAS</h1>
+                <h2 class="cart__title">CARRITO DE COMPRAS</h2>
             </article>
-            <article class="row cart__header">
-                <span class="col-1 cart__header--title text-dark"></span>
-                <span class="col-4 cart__header--title text-dark">detalle de producto</span>
-                <span class="col-3 cart__header--title text-dark">cantidad</span>
-                <span class="col-3 cart__header--title text-dark">total</span>
-                <span class="col-1 cart__header--title text-dark"></span>
+            <article class="row cart__header prod__title">
+                <span class="col-1"></span>
+                <span class="col-5">detalle de producto</span>
+                <span class="col-3 cart__header--title">cantidad</span>
+                <span class="col-2 cart__header--title">total</span>
+                <span class="col-1 cart__header--title"></span>
             </article>
-            <article class="row cart__header item__list">
-                <span class="col-1 text-dark"><img src="../../img/star-wars/baby-yoda-1.webp" alt=""></span>
-                <div class="col-4 card-item__detail">
+            <article class="row cart__header prod__list">
+                <div class="col-md-1 col-2 prod__img">
+                    <span class="col-1"><img src="../../img/star-wars/baby-yoda-1.webp" alt=""></span>
+                </div>
+                <div class="col-md-5 col-10 prod__details">
                     <h2 class="card-item__name">BABY YODA BLUEBALL</h2>
                     <p class="card-item__licence">star wars</p>
                     <p class="card-item__price price">precio unitario: $1799,99</p>
                 </div>
-                <div class="cart__precio">
-                    <input class="items__input" type="text" name="quantity" id="quantity" placeholder="0">
-                    <div class="">
+                <div class="col-md-3 col-6 prod__quantity">
+                    <input class="items__input" type="text" name="quantity1" id="quantity1" value="2" placeholder="0">
+                    <div class="prod__quantity--btn">
                         <button id="add" class="items__cart--mas">+</button>
                         <button id="substract" class="items__cart--menos">-</button>
                     </div>
                 </div>
-
-                <span class="col-3 text-dark">cantidad</span>
-                <span class="col-3 text-dark">total</span>
-                <span class="col-1 text-dark"></span>
+                <div class="col-md-2 col-6 prod__price">$ 3599,98</div>
+                <div class="col-md-1 col-4 prod__icon"><iconify-icon class="icon__del"
+                        icon="iconoir:delete-circle"></iconify-icon></div>
+            </article>
+            <article class="row cart__header prod__list">
+                <div class="col-md-1 col-2 prod__img">
+                    <span class="col-1 text-dark"><img src="../../img/pokemon/pidgeotto-1.webp" alt=""></span>
+                </div>
+                <div class="col-md-5 col-10 prod__details">
+                    <h2 class="card-item__name">PIDGEOTTO</h2>
+                    <p class="card-item__licence">pokemon</p>
+                    <p class="card-item__price price">precio unitario: $1799,99</p>
+                </div>
+                <div class="col-md-3 col-6 prod__quantity">
+                    <input class="items__input" type="text" name="quantity2" id="quantity2" value="1" placeholder="0">
+                    <div class="prod__quantity--btn">
+                        <button id="add" class="items__cart--mas">+</button>
+                        <button id="substract" class="items__cart--menos">-</button>
+                    </div>
+                </div>
+                <span class="col-md-2 col-6 prod__price">$ 3599,98</span>
+                <span class="col-md-1 col-4 prod__icon"><iconify-icon class="icon__del"
+                        icon="iconoir:delete-circle"></iconify-icon></span>
             </article>
         </section>
+
+        <article class="row">
+            <div class="col-md-6 col-12"></div>
+            <div class="col-md-6">
+                <article class="cart__content">
+                    <h2 class="cart__title resume_title">RESUMEN</h2>
+                </article>
+                <article class="row cart__header prod__list">
+                    <div class="col-6 d-flex flex-column">
+                        <p class="resume__text resume__text--left">Cantidad de Elementos</p>
+                        <p class="resume__text resume__text--left">Subtotal</p>
+                        <p class="resume__text resume__text--left">Envío</p>
+                    </div>
+                    <div class="col-6 d-flex flex-column">
+                        <p class="resume__text resume__text--right">3</p>
+                        <p class="resume__text resume__text--right">$ 5.399,97</p>
+                        <p class="resume__text resume__text--right">$ 0,00</p>
+                    </div>
+                    <span class="linea"></span>
+                    <div class="col-6 d-flex flex-column">
+                        <p class="resume__text resume__text--left fs-3">TOTAL</p>
+                    </div>
+                    <div class="col-6 d-flex flex-column">
+                        <p class="resume__text resume__text--right fs-3">$5.399,97</p>
+                    </div>
+                </article>
+                <button class="pay w-100">ir a pagar</button>
+            </div>
+        </article>
+
     </main>
 
     <footer class="footer">
