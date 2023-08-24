@@ -1,0 +1,64 @@
+main.admin {
+    font-family: var(--font-inter);
+    min-height: 75vh;
+}
+
+.listado__head {
+    margiN: var(--spacing-36) 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.listado__title {
+    font-size: var(--font-30-xlarge);
+    font-weight: bold;
+}
+
+.listado__add {
+    display: flex;
+    align-items: center;
+}
+
+.listado__add h2 {
+    font-weight: 700;
+}
+
+.listado__add--icon {
+    color: var(--rojo);
+    font-size: var(--font-38-jumbo);
+    padding: 0 var(--spacing-20);
+}
+
+.listado__add--icon:hover {
+    color: var(--rojo-70);
+}
+
+.table {
+    font-size: var(--font-18-medium);
+}
+
+.td__icon--edit,
+.td__icon--delete {
+    cursor: pointer;
+}
+
+.td__icon--edit {
+    color: var(--azul);
+}
+
+.td__icon--delete {
+    color: var(--rojo);
+}
+
+.td__icon--edit:hover {
+    color: var(--azul-70)
+}
+
+.td__icon--delete:hover {
+    color: var(--rojo-70)
+}
+
+th.id {
+    font-weight: 500;
+}

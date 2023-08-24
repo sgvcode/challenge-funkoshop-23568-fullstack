@@ -2,7 +2,7 @@
   "name": "challenge-integrador-fullstack",
   "version": "1.0.0",
   "description": "![HOME](https://github.com/sgvcode/challenge-funkoshop-23568/assets/106033066/0ea48dc2-becf-474c-96a2-6f61b0ff5624)",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "node --watch app.js"
