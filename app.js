@@ -1,7 +1,7 @@
 const express = require('express');
 const PORT = 3001;
 const app = express();
-const itemRoutes = require('./src/routes/itemRoutes');
+const adminRoutes = require('./src/routes/adminRoutes');
 const mainRoutes = require('./src/routes/mainRoutes');
 const shopRoutes = require('./src/routes/shopRoutes');
 
@@ -9,9 +9,9 @@ app.use(express.static('public_html'));
 
 
 // Middleware a nivel de ruta (paso intermedio)
-app.use('/', itemRoutes);
 app.use('/', mainRoutes);
 app.use('/shop', shopRoutes);
+app.use('/admin', adminRoutes);
 
 
 // app.get('/home', (req, res) => { res.sendFile(__dirname + '/public_html/index.html') });
