@@ -15,11 +15,13 @@ const shopControllers = {
         const id = req.params.id;
         const item = await ItemsService.getItem(id);
         const { data } = item;
-        res.render('../views/shop/item', {
+
+        res.render('./shop/item', {
             view: {
                 title: "Items | Funkoshop"
             },
-            item: data[0]
+            item: data[0],
+            enableGlide: true
         });
     },
 

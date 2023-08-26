@@ -1,9 +1,10 @@
 /* PAGINA DE ITEMS */
 .items__content {
+    font-family: var(--font-inter);
     display: flex;
     align-items: center;
+    justify-content: center;
     margin: var(--spacing-68) 0;
-    font-family: var(--font-inter);
 }
 
 .items img {
@@ -17,18 +18,19 @@
 .items__details {
     display: flex;
     flex-direction: column;
+    margin-top: var(--spacing-68);
 }
 
 .items_licence {
-    font-size: var(--font-14-xsmall);
+    font-size: var(--font-16-small);
     text-transform: uppercase;
 }
 
 .items__name {
-    font-size: var(--font-30-xlarge);
-    padding: var(--spacing-8) 0;
-    font-weight: 700;
+    font-size: var(--font-38-jumbo);
+    /* padding: var(--spacing-16) 0; */
     text-transform: uppercase;
+    font-weight: 700;
 }
 
 .items__text {

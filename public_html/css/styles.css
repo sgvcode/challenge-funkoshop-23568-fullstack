@@ -2,27 +2,19 @@
 @import url('https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.core.min.css');
 @import url('https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.theme.min.css');
 
-/* COMPONENTES */
 /* Variables */
 @import url('./components/variables.css');
 
 /* Reset Navegadores */
 @import url('./components/reset.css');
 
+/* Sliders Ultimos Lanzamientos & Productos Relacionados */
+@import url('./components/slider.css');
+
 /* Header y Footer */
 @import './components/header.css';
 @import './components/footer.css';
 
-/* Forms */
-@import './components/forms.css';
-
-/* Admin */
-@import './pages/admin.css';
-
-/* Sliders Ultimos Lanzamientos & Productos Relacionados */
-@import url('./components/slider.css');
-
-/* PAGES */
 /* Página Items */
 @import './pages/items.css';
 
@@ -38,13 +30,13 @@
 @import './pages/cart.css';
 
 
-/* INDEX (styles) */
+/* INDEX */
 /* Hero */
 .hero {
     background-image: url("../img/funkos-banner.webp");
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: top;
+    background-position: center;
     padding: var(--spacing-128) 0;
     background-attachment: fixed;
     position: relative;
@@ -111,7 +103,7 @@
 .collection__content {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-24);
+    /* gap: var(--spacing-24); */
     align-items: start;
 }
 
@@ -122,26 +114,32 @@
 }
 
 .collection__text {
+    display: flex;
     font-family: var(--font-raleway);
     font-size: var(--font-24-large);
-    font-weight: 300;
-    border-bottom: 2px solid var(--rojo);
-    padding-bottom: var(--spacing-20);
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+.collection__hr {
+    border: none;
+    border: 2px solid var(--rojo);
+    opacity: 1;
 }
 
 .collection__link {
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 292px;
+    height: 65px;
     font-family: var(--font-inter);
     font-size: var(--font-24-large);
     background-color: var(--fondo-oscuro);
     color: var(--blanco);
-    height: 65px;
-    /* padding: var(--spacing-16) var(--spacing-36); */
-    width: 291px;
     border-radius: var(--spacing-68);
     text-transform: uppercase;
+    margin-top: var(--spacing-20);
     transition: background-color .3s ease-in-out;
 }
 
