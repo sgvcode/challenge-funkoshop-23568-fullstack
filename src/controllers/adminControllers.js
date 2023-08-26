@@ -1,4 +1,4 @@
-const { getAll } = require('../models/itemsModels');
+const { getAll } = require('../models/itemsModel');
 
 const adminControllers = {
 
