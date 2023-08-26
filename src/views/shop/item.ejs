@@ -4,16 +4,25 @@
         <section class="items container">
             <article class="row items__content card-item">
                 <picture class="col-md-6 item__img card-item__cover">
-                    <img class="card-item__img--front" src="../../img/star-wars/baby-yoda-1.webp" alt="Baby Yoda">
-                    <img class="card-item__img--back" src="../../img/star-wars/baby-yoda-box.webp" alt="Baby Yoda Box">
+                    <img class="card-item__img--front" src="../../img/<%= item.image_front %>"
+                        alt="<%= item.product_description %>">
+                    <img class="card-item__img--back" src="../../img/<%= item.image_front %>"
+                        alt="<%= item.product_description %>">
                 </picture>
 
                 <div class="col-md-6 items__details">
-                    <p class="items_licence">STAR WARS</p>
-                    <h3 class="items__name">BABY YODA BLUEBALL</h3>
-                    <p class="items__text">Figura coleccionable de Baby Yoda (Grogu) - The Mandalorian Saga,
-                        edición limitada.</p>
-                    <p class="items__price">$1799,99.-</p>
+                    <p class="items_licence">
+                        <%= item.licence_name %>
+                    </p>
+                    <h3 class="items__name">
+                        <%= item.product_name %>
+                    </h3>
+                    <p class="items__text">
+                        <%= item.product_description %>
+                    </p>
+                    <p class="items__price">
+                        <%= item.price %>
+                    </p>
                     <div class="items__cart">
                         <input class="items__input" type="text" name="quantity" id="quantity" placeholder="0">
                         <div class="items__cart--btn">

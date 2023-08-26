@@ -3,6 +3,7 @@
     display: flex;
     align-items: center;
     margin: var(--spacing-68) 0;
+    font-family: var(--font-inter);
 }
 
 .items img {
@@ -20,16 +21,20 @@
 
 .items_licence {
     font-size: var(--font-14-xsmall);
+    text-transform: uppercase;
 }
 
 .items__name {
     font-size: var(--font-30-xlarge);
-    padding: var(--spacing-16) 0;
+    padding: var(--spacing-8) 0;
+    font-weight: 700;
+    text-transform: uppercase;
 }
 
 .items__text {
     font-size: var(--font-24-large);
-    padding: var(--spacing-16) 0;
+    /* padding: var(--spacing-16) 0; */
+    line-height: 1.2;
 }
 
 .items__price {

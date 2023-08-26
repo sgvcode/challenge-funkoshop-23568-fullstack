@@ -9,10 +9,12 @@
 .slider__title {
     font-family: var(--font-raleway);
     font-size: var(--font-46-display);
+    font-weight: 700;
     text-transform: uppercase;
 }
 
 .card-item__content {
+    font-family: var(--font-inter);
     display: flex;
     flex-direction: column;
     gap: var(--spacing-12);
@@ -37,7 +39,7 @@
 }
 
 .card-item__promo {
-    font-size: var(--font-14-xsmall);
+    font-size: var(--font-12-xxsmall);
     color: var(--azul);
     font-weight: 500;
     text-transform: uppercase;
