@@ -130,11 +130,16 @@
 }
 
 .collection__link {
-    display: inline-block;
-    font-size: var(--font-18-medium);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-inter);
+    font-size: var(--font-24-large);
     background-color: var(--fondo-oscuro);
     color: var(--blanco);
-    padding: var(--spacing-16) var(--spacing-36);
+    height: 65px;
+    /* padding: var(--spacing-16) var(--spacing-36); */
+    width: 291px;
     border-radius: var(--spacing-68);
     text-transform: uppercase;
     transition: background-color .3s ease-in-out;

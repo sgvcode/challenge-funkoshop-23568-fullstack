@@ -17,8 +17,8 @@
     font-family: var(--font-inter);
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-12);
-    padding: var(--spacing-16);
+    gap: var(--spacing-8);
+    /* padding: var(--spacing-16); */
 }
 
 .card-item__licence {
