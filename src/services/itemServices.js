@@ -1,12 +1,13 @@
 const ItemModel = require('../models/itemModel');
 
 const getAllItems = async () => {
-    return await ItemModel();
+    return await ItemModel.getAll();
 }
 
 const getItem = async (id) => {
     return await ItemModel.getOne({ product_id: id });
 }
+
 
 const createItem = async (item) => {
     return await ItemModel.create(item);

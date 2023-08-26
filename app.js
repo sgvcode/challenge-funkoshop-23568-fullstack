@@ -10,6 +10,10 @@ const shopRoutes = require('./src/routes/shopRoutes');
 
 app.use(express.static('public_html'));
 
+// Configuracion de EJS
+app.set('view engine', 'ejs');
+app.set('views', './src/views');
+
 app.use(express.urlencoded());
 app.use(express.json());
 
