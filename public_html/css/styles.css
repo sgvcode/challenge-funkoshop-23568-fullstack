@@ -8,10 +8,10 @@
 /* Reset Navegadores */
 @import url('./components/reset.css');
 
-/* Sliders Ultimos Lanzamientos & Productos Relacionados */
+/* Componentes Sliders / Cards Ultimos Lanzamientos & Productos Relacionados */
 @import url('./components/slider.css');
 
-/* Header y Footer */
+/* Componentes Header y Footer */
 @import './components/header.css';
 @import './components/footer.css';
 
@@ -21,10 +21,15 @@
 /* Página Shop */
 @import './pages/shop.css';
 
+/* Página Admin */
+@import './pages/admin.css';
+
 
 /* Página Login */
 @import './pages/login.css';
 
+/* Componentes Forms */
+@import './components/forms.css';
 
 /* Página Cart */
 @import './pages/cart.css';

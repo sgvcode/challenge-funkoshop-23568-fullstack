@@ -1,7 +1,7 @@
-const licenceModel = require('../models/licenceModel');
+const LicenceModel = require('../models/licenceModel');
 
 const getAllItemsLicences = async () => {
-    return await licenceModel.getAll();
+    return await LicenceModel.getAll();
 }
 
 module.exports = {

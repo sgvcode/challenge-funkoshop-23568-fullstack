@@ -62,3 +62,9 @@ main.admin {
 th.id {
     font-weight: 500;
 }
+
+.btn__borrar--item {
+    border: none;
+    background-color: transparent;
+
+}

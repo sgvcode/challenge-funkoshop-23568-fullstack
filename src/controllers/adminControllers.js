@@ -1,8 +1,23 @@
 const { getAll } = require('../models/itemModel');
 
+const ItemsService = require('../services/itemServices');
+const CategoryService = require('../services/categoryService');
+const LicenceService = require('../services/licenceService');
+
+
 const adminControllers = {
 
-    adminView: (req, res) => res.send("Route de página admin"),
+    adminView: async (req, res) => {
+        const { data } = await ItemsService.getAllItems();
+        res.render('./admin/admin',
+            {
+                view: {
+                    title: 'Administración de productos | Funkoshop'
+                },
+                items: data
+            });
+    },
+
 
     itemsView: async (req, res) => {
         let data = await getAll();
@@ -14,16 +29,70 @@ const adminControllers = {
         res.send(data);
     }, // *borrar
 
-    createView: (req, res) => res.send("Route de página create"),
-    createItem: (req, res) => res.send("Nuevo item a agregar a la bd"),
-    editView: (req, res) => res.send(`Route de página edit de ID:${req.params.id}`),
-    editItem: (req, res) => res.send("Nuevo item a agregar a la bd"),
-    deleteItem: (req, res) => res.send("Borra item de la bd"),
-    loginView: (req, res) => res.send("Route de página login"),
-    loginUser: (req, res) => res.send("Recibe los datos login"),
-    registerView: (req, res) => res.send("Route de pagina register"),
-    registerUser: (req, res) => res.send("Recibe los datos de registro")
+    createView: async (req, res) => {
+        const { data: categories } = await CategoryService.getAllItemsCategories();
+        const { data: licences } = await LicenceService.getAllItemsLicences();
 
+        res.render('./admin/create', {
+            view: {
+                title: 'Crear Producto | Admin Funkoshop'
+            },
+            categories,
+            licences
+        });
+    },
+
+    createItem: async (req, res) => {
+        const item = req.body;
+        const files = req.files;
+        await ItemsService.create(item, files);
+        res.redirect('/admin');
+    },
+
+
+    bulkCreate: async (req, res) => {
+        const items = req.body;
+        const result = await ItemsService.create(items.map(el => Object.values(el)));
+        res.send(result);
+    },
+
+
+    editView: async (req, res) => {
+        const id = req.params.id;
+        const { data: categories } = await CategoryService.getAllItemsCategories();
+        const { data: licences } = await LicenceService.getAllItemsLicences();
+        const { data } = await ItemsService.getItem(id);
+        console.log(categories, licences);
+        res.render('./admin/edit', {
+            view: {
+                title: `Editar Producto #${id} | Admin Funkoshop`
+            },
+            item: data[0],
+            categories,
+            licences
+        });
+    },
+
+    editItem: async (req, res) => {
+        const id = req.params.id;
+        const item = req.body;
+
+        await ItemsService.edit(item, id);
+        res.redirect('/admin');
+    },
+
+    deleteItem: async (req, res) => {
+        const id = req.params.id;
+
+        await ItemsService.delete(id);
+        res.redirect('/admin');
+    },
+
+    loginView: (req, res) => res.render('./auth/login', {
+        view: {
+            title: 'Login | Funkoshop'
+        }
+    }),
 }
 
 module.exports = adminControllers;
