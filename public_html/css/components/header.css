@@ -44,6 +44,10 @@ header {
     display: block;
 }
 
+.navbar__cart:hover {
+    filter: brightness(0) saturate(100%) invert(36%) sepia(47%) saturate(4993%) hue-rotate(343deg) brightness(111%) contrast(104%);
+}
+
 .submenu {
     display: none;
     width: 300px;
@@ -62,4 +66,13 @@ header {
 
 .submenu__item:hover {
     background-color: var(--rojo-90);
+}
+
+.logo__branding {
+    padding-right: var(--spacing-16);
+    transition: filter .3s ease;
+}
+
+.logo__branding:hover {
+    filter: brightness(1.6);
 }

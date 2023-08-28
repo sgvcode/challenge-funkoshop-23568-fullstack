@@ -161,4 +161,25 @@
     .collection:nth-child(3) .collection__cover {
         order: -1;
     }
+
+    .cart__card--titles {
+        display: none;
+    }
+
+    .cart__card--prod {
+        padding: 0 var(--spacing-36) var(--spacing-36);
+    }
+
+}
+
+@media (min-width:769px) {
+    .cart__card--prod {
+        padding: var(--spacing-24) 0;
+    }
+}
+
+@media (min-width: 992px) {
+    .cart__card--prod {
+        padding: 0 var(--spacing-16)
+    }
 }
