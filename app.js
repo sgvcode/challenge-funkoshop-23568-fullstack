@@ -23,20 +23,17 @@ app.use(express.json());
 
 app.use(methodOverride('_method'));
 
+// Ruta de redirección para la página de inicio
+app.get('/', (req, res) => {
+    res.redirect('/home'); // Redirige a /home
+});
+
 
 // Middleware a nivel de ruta (paso intermedio)
 app.use('/', mainRoutes);
 app.use('/shop', shopRoutes);
 app.use('/admin', adminRoutes);
 app.use('/auth', authRoutes);
-
-// Manejador de ruta para la raíz que redirige a /home
-// app.get('/', (req, res) => {
-//     res.redirect('/home');
-// });
-
-// app.get('/home', (req, res) => { res.sendFile(__dirname + '/public_html/index.html') });
-
 
 
 app.listen(PORT, () => console.log(`Servidor corriendo en http://localhost:${PORT}`));

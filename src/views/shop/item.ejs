@@ -29,7 +29,9 @@
                             <button id="add" class="items__cart--mas">+</button>
                             <button id="substract" class="items__cart--menos">-</button>
                         </div>
-                        <button type="submit" class="items__addcart">Agregar al carrito</button>
+                        <form action="/item/<%= item.product_id %>/add" method="post">
+                            <button type="submit" class="items__addcart">Agregar al carrito</button>
+                        </form>
                     </div>
                     <p class="items__promo"><a href="#">Ver metodos de pago </a> - 3 CUOTAS SIN INTERÉS</p>
                 </div>

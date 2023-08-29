@@ -11,7 +11,14 @@ const mainControllers = {
             enableGlide: true
         })
     },
-    contactView: (req, res) => res.send('Route a Contact,'),
+    contactView: (req, res) => {
+        res.render('contact', {
+            view: {
+                title: "Contact | Funkoshop"
+            },
+        })
+    },
+
     aboutView: (req, res) => res.send('Route a About'),
     faqsView: (req, res) => res.send('Route a FAQs')
 }
