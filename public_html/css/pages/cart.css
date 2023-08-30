@@ -80,9 +80,20 @@ h2.cart__title {
     text-align: right;
 }
 
-.cart__item--delete {
+/* .cart__item--delete {
     width: 28px;
     height: 28px;
+    cursor: pointer;
+    transition: color .3s ease;
+} */
+
+.cart__item--delete {
+    color: red;
+    font-size: var(--font-24-large);
+}
+
+.cart__item--delete:hover {
+    color: var(--negro-90);
 }
 
 /* SECCION RESUMEN */
@@ -134,5 +145,10 @@ span.linea {
     text-transform: uppercase;
     font-weight: 700;
     padding: var(--spacing-12) 0;
+    cursor: pointer;
+    transition: background-color .3s ease;
+}
 
+.cart__pay:hover {
+    background-color: var(--rojo-70);
 }

@@ -3,36 +3,36 @@
 @import url('https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.theme.min.css');
 
 /* Variables */
-@import url('./components/variables.css');
+@import url('components/variables.css');
 
 /* Reset Navegadores */
-@import url('./components/reset.css');
+@import url('components/reset.css');
 
 /* Componentes Sliders / Cards Ultimos Lanzamientos & Productos Relacionados */
-@import url('./components/slider.css');
+@import url('components/slider.css');
 
 /* Componentes Header y Footer */
-@import './components/header.css';
-@import './components/footer.css';
+@import 'components/header.css';
+@import 'components/footer.css';
 
 /* Página Items */
-@import './pages/items.css';
+@import 'pages/items.css';
 
 /* Página Shop */
-@import './pages/shop.css';
+@import 'pages/shop.css';
 
 /* Página Admin */
-@import './pages/admin.css';
+@import 'pages/admin.css';
 
 
 /* Página Login */
-@import './pages/login.css';
+@import 'pages/login.css';
 
 /* Componentes Forms */
-@import './components/forms.css';
+@import 'components/forms.css';
 
 /* Página Cart */
-@import './pages/cart.css';
+@import 'pages/cart.css';
 
 
 /* INDEX */

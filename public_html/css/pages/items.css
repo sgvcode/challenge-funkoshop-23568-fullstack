@@ -91,6 +91,7 @@
     color: var(--blanco);
     font-size: var(--font-18-medium);
     cursor: pointer;
+    transition: background-color .3s ease;
 }
 
 .items__addcart:hover {

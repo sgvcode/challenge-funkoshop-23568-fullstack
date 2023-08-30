@@ -35,7 +35,7 @@
     </header>
 
     <main class="container admin__main">
-        <h2 class="createdit__title">CREAR NUEVO ITEM</h2>
+        <h2 class="createdit__title">EDITAR ITEM</h2>
 
         <form class="createdit__form" action="/admin/create" method="POST" enctype="multipart/form-data">
             <article class="form__cat-lic">
@@ -101,10 +101,20 @@
                 <label class="form__label" for="images">Imagenes:</label>
                 <input class="form__files" type="file" name="images" id="img" multiple>
             </div>
+            <div class="form__flex gap-5">
+                <div class="edit__img">
+                    <img src="" alt="">
+                    <p class="edit__img-side">Frente</p>
+                </div>
+                <div class="edit__img">
+                    <img src="" alt="">
+                    <p class="edit__img-side">Dorso</p>
+                </div>
+            </div>
+
             <!-- Botones Agregar / Limpiar -->
             <div class="form__flex gap-4">
-                <input class="btn form__btn btn-create" type="submit" value="Agregar Producto">
-                <input class="btn form__btn btn-create" type="reset" value="Limpiar">
+                <input class="btn form__btn btn-create" type="submit" value="Modificar Producto">
             </div>
         </form>
     </main>
