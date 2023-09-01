@@ -1,6 +1,8 @@
+const { isLogged } = require('../middlewares/login');
+
 const userCredentials = {
     email: 'admin@email.com',
-    password: 'pass'
+    password: 'pass1234'
 }
 
 module.exports = {

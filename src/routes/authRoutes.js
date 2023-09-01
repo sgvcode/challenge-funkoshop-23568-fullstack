@@ -20,7 +20,10 @@ const loginValidation = [
         .isAlphanumeric()
         .withMessage('La contraseña debe tener al menos 6 caracteres y contener letras y números.')
 ];
-
+router.post('/temp', (req, res) => {
+    console.log(req.body);
+    res.send('¡Funciona!');
+});
 router.get('/login', loginView);
 router.post('/login', loginValidation, validateInput, loginUser);
 router.get('/register', registerView);

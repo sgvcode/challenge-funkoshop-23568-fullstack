@@ -11,6 +11,7 @@ const mainControllers = {
             enableGlide: true
         })
     },
+
     contactView: (req, res) => {
         res.render('contact', {
             view: {

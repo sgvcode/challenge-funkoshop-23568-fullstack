@@ -29,6 +29,7 @@ const shopControllers = {
     addToCart: async (req, res) => {
         const id = req.params.id;
         const item = await ItemsService.getItem(id);
+        console.log(item); // Agrega este console.log
 
         if (item.data.length > 0) {
             CartService.addToCart(item.data[0]);

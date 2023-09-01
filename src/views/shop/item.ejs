@@ -29,7 +29,8 @@
                             <button id="add" class="items__cart--mas">+</button>
                             <button id="substract" class="items__cart--menos">-</button>
                         </div>
-                        <form action="/item/<%= item.product_id %>/add" method="post">
+                        <!-- <form action="<%= item.product_id %>/add" method="post"> -->
+                        <form action="/shop/item/<%= item.product_id %>/add" method="post">
                             <button type="submit" class="items__addcart">Agregar al carrito</button>
                         </form>
                     </div>
