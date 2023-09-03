@@ -19,16 +19,3 @@
     font-size: var(--font-38-jumbo);
     letter-spacing: 1px;
 }
-
-.login__form {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    margin: auto;
-    gap: var(--spacing-28);
-}
-
-.login__box .form__link {
-    font-size: var(--font-small);
-    text-align: center;
-}

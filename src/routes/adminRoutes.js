@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const uploadFiles = require('../middlewares/uploadFiles');
-const { isLogged } = require('../middlewares/login');
+// const { isLogged } = require('../middlewares/login');
 const adminControllers = require('../controllers/adminControllers');
 
-router.use(isLogged);
+// router.use(isLogged);
 
 router.get('/', adminControllers.adminView);
 router.get('/create', adminControllers.createView);

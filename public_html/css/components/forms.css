@@ -104,6 +104,19 @@
 }
 
 /* PAGINA LOGIN */
+.login__form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: auto;
+    gap: var(--spacing-28);
+}
+
+.login__box .form__link {
+    font-size: var(--font-small);
+    text-align: center;
+}
+
 .form__item {
     display: grid;
     grid-template-columns: 1fr 2fr;
@@ -132,7 +145,8 @@ input:focus::placeholder {
     outline: none;
 }
 
-.form__input#password {
+.form__input#password,
+.form__input#repeat-password {
     font-size: var(--font-24-large);
 }
 
@@ -181,6 +195,16 @@ input:focus::placeholder {
 
 .form__lost:hover {
     color: var(--azul-70);
+}
+
+/* PAGINA REGISTER */
+.register__form {
+    width: clamp(250px, 100%, 450px);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: auto;
+    gap: var(--spacing-28);
 }
 
 /* PAGINA CREATE */

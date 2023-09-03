@@ -28,6 +28,9 @@
 /* Página Login */
 @import 'pages/login.css';
 
+/* Página Register */
+@import 'pages/register.css';
+
 /* Componentes Forms */
 @import 'components/forms.css';
 

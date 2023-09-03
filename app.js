@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const methodOverride = require('method-override');
+const session = require('express-session');
 
 require('dotenv').config();
 
@@ -13,6 +14,17 @@ const shopRoutes = require('./src/routes/shopRoutes');
 const authRoutes = require('./src/routes/authRoutes');
 
 app.use(express.static(path.resolve(__dirname, 'public_html')));
+
+// Configura express-session
+app.use(
+    session({
+        secret: 'funkopop', // Cambia esto por una cadena secreta segura
+        resave: false,
+        saveUninitialized: true,
+    })
+);
+
+
 
 // Configuracion de EJS
 app.set('view engine', 'ejs');

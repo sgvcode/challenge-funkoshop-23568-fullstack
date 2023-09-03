@@ -1,5 +1,4 @@
 const ItemsService = require('../services/itemServices');
-const CartService = require('../services/cartService');
 
 const shopControllers = {
     shopView: async (req, res) => {
@@ -22,31 +21,60 @@ const shopControllers = {
                 title: "Items | Funkoshop"
             },
             item: data[0],
-            enableGlide: true
+            enableGlide: true,
+            sliderTitle: 'Productos Relacionados'
         });
     },
 
     addToCart: async (req, res) => {
         const id = req.params.id;
         const item = await ItemsService.getItem(id);
-        console.log(item); // Agrega este console.log
+        console.log(item);
 
         if (item.data.length > 0) {
-            CartService.addToCart(item.data[0]);
-            res.send(`Item ${item.data[0].name} agregado al carrito.`);
+            // Agrega el item al carrito directamente en el controlador
+            req.session.cart = req.session.cart || [];
+            req.session.cart.push(item.data[0]);
+
+            res.send(`Item ${item.data[0].product_name} agregado al carrito.`);
         } else {
             res.send('No se encontró el item para agregar al carrito.');
         }
     },
 
     cart: (req, res) => {
+        // Renderiza la página cart.ejs con los elementos del carrito almacenados en la sesión
+        const cartItems = req.session.cart || [];
+
         res.render('../views/shop/cart', {
             view: {
                 title: "Carrito | Funkoshop"
             },
-            cart: CartService.getCart()
+            cart: cartItems
         });
     },
+
+    // addToCart: async (req, res) => {
+    //     const id = req.params.id;
+    //     const item = await ItemsService.getItem(id);
+    //     console.log(item); // Agrega este console.log
+
+    //     if (item.data.length > 0) {
+    //         CartService.addToCart(item.data[0]);
+    //         res.send(`Item ${item.data[0].name} agregado al carrito.`);
+    //     } else {
+    //         res.send('No se encontró el item para agregar al carrito.');
+    //     }
+    // },
+
+    // cart: (req, res) => {
+    //     res.render('../views/shop/cart', {
+    //         view: {
+    //             title: "Carrito | Funkoshop"
+    //         },
+    //         cart: CartService.getCart()
+    //     });
+    // },
 
     checkout: (req, res) => {
 
