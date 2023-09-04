@@ -11,7 +11,7 @@ const mainControllers = {
             view: {
                 title: "Home | Funkoshop"
             },
-            collection: licences.data,
+            collections: licences.data,
             enableGlide: true
         })
     },
