@@ -4,10 +4,13 @@ const getAllItems = async () => {
     return await ItemModel.getAll();
 }
 
-const getItem = async (id) => {
+const getOne = async (id) => {
     return await ItemModel.getOne({ product_id: id });
 }
 
+const getItem = async (id) => {
+    return await ItemModel.getItem({ product_id: id });
+}
 
 const createItem = async (item, files) => {
     const itemSchema = {
@@ -23,7 +26,7 @@ const createItem = async (item, files) => {
         licence_id: item.collection,
         category_id: item.category
     }
-    return await ItemModel.create([Object.values(itemSchema)]);
+    return await ItemModel.createItem([Object.values(itemSchema)]);
 }
 
 
@@ -42,17 +45,18 @@ const editItem = async (item, id) => {
         category_id: item.category
     }
 
-    return await ItemModel.edit(itemSchema, { product_id: id });
+    return await ItemModel.editItem(itemSchema, { product_id: id });
 }
 
 const deleteItem = async (id) => {
-    return await ItemModel.delete({ product_id: id });
+    return await ItemModel.deleteItem({ product_id: id });
 }
 
 module.exports = {
     getAllItems,
+    getOne,
     getItem,
-    create: createItem,
-    edit: editItem,
-    delete: deleteItem
+    createItem,
+    editItem,
+    deleteItem
 }

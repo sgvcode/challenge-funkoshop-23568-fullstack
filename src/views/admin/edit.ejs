@@ -2,7 +2,8 @@
     <main class="container admin__main">
         <h2 class="createdit__title">EDITAR ITEM</h2>
 
-        <form class="createdit__form" action="/admin/create" method="POST" enctype="multipart/form-data">
+        <form class="createdit__form" action="/admin/edit/<%= item.product_id %>?_method=PUT" method="POST"
+            enctype="application/x-www-form-urlencoded">
             <article class="form__cat-lic">
                 <div class="form__item">
                     <label class="form__label" for="category">Categoría:</label>
@@ -32,32 +33,34 @@
             <article class="createdit__name">
                 <label class="form__label" for="name">Nombre del producto:</label>
                 <input class="form__input createdit__input" type="text" name="name" id="name"
-                    placeholder="Kakashi Hatake Shippuden Saga" required>
+                    value="<%= item.product_name %>" required>
                 <div>
-                    <textarea class="form__textarea--create" name="description" id="description" rows="13"
-                        placeholder="Descripción del producto" required></textarea>
+                    <textarea class="form__textarea--createdit" name="description" id="description" rows="13"
+                        required><%= item.product_description %></textarea>
                 </div>
             </article>
             <!-- Datos del producto línea 1 -->
             <article class="createdit__block d-flex mb-5">
                 <div class="d-flex">
                     <label class="form__label" for="sku">SKU:</label>
-                    <input class="form__input w-75" type="text" name="sku" id="sku" placeholder="SSK111AB001" required>
+                    <input class="form__input w-75" type="text" name="sku" id="sku" value="<%= item.sku %>" required>
                 </div>
                 <div class="d-flex">
                     <label class="form__label" for="price">Precio:</label>
                     <input class="form__input w-75" type="text" name="price" id="price" data-type="currency"
-                        placeholder="0.000,00">
+                        value="<%= item.price %>">
                 </div>
                 <div class="d-flex">
                     <label class="form__label" for="stock">Stock:</label>
-                    <input class="form__input discount" type="text" name="stock" id="stock" placeholder="0" required>
+                    <input class="form__input discount" type="text" name="stock" id="stock" value="<%= item.stock %>"
+                        required>
                 </div>
             </article>
             <!-- Datos del producto línea 2 -->
             <article class="createdit__block d-flex mb-5">
                 <label class="form__label" for="discount">Descuento:</label>
-                <input class="form__input discount" type="text" name="discount" id="discount" placeholder="0" required>
+                <input class="form__input discount" type="text" name="discount" id="discount"
+                    value="<%= item.discount %>" required>
 
                 <label class="form__label" for="dues">Cuotas:</label>
                 <select class="form-select-lg form__select form__input" name="dues" id="dues">
@@ -78,11 +81,11 @@
             </div>
             <div class="form__flex gap-5">
                 <div class="edit__img">
-                    <img src="/img<%= item.image_front %>" alt="<%= item.product_name %>">
+                    <img src="../../img/<%= item.image_front %>" alt="<%= item.product_name %>">
                     <p class="edit__img-side">Frente</p>
                 </div>
                 <div class="edit__img">
-                    <img src="/img<%= item.image_back %>" alt="<%= item.product_name %> en caja">
+                    <img src="../../img/<%= item.image_back %>" alt="<%= item.product_name %> en caja">
                     <p class="edit__img-side">Dorso</p>
                 </div>
             </div>

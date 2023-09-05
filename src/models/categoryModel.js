@@ -1,6 +1,6 @@
 const { conn } = require('../config/conn');
 
-const getAll = async () => {
+const getCatagories = async () => {
     try {
         const [rows] = await conn.query('SELECT * FROM category;');
         const response = {
@@ -22,5 +22,5 @@ const getAll = async () => {
 }
 
 module.exports = {
-    getAll
+    getCatagories
 }

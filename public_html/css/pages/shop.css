@@ -3,7 +3,11 @@
 }
 
 .shop__item {
-    padding: 0 var(--spacing-16)
+    padding: 0 var(--spacing-16);
+}
+
+.shop__items {
+    padding: 0;
 }
 
 

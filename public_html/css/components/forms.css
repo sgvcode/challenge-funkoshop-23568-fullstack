@@ -266,7 +266,7 @@ input:focus::placeholder {
 .form__search {
     padding: 68px 0;
     width: clamp(250px, 250px, 100%);
-    margin: auto;
+    margin: 0;
 }
 
 .form__search--item {
