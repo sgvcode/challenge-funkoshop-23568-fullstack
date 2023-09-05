@@ -79,7 +79,8 @@ th.id {
     font-weight: 500;
 }
 
-.btn__borrar--item {
+.btn__borrar--item,
+.btn__edit--item {
     border: none;
     background-color: transparent;
 

@@ -45,7 +45,7 @@ const adminControllers = {
     createItem: async (req, res) => {
         const item = req.body;
         const files = req.files;
-        await ItemsService.create(item, files);
+        await ItemsService.createItem(item, files);
         res.redirect('/admin');
     },
 
@@ -59,6 +59,7 @@ const adminControllers = {
 
     editView: async (req, res) => {
         const id = req.params.id;
+        console.log('ID recibido:', id);
         const { data: categories } = await CategoryService.getAllItemsCategories();
         const { data: licences } = await LicenceService.getAllItemsLicences();
         const { data } = await ItemsService.getItem(id);
@@ -77,14 +78,14 @@ const adminControllers = {
         const id = req.params.id;
         const item = req.body;
 
-        await ItemsService.edit(item, id);
+        await ItemsService.editItem(item, id);
         res.redirect('/admin');
     },
 
     deleteItem: async (req, res) => {
         const id = req.params.id;
 
-        await ItemsService.delete(id);
+        await ItemsService.deleteItem(id);
         res.redirect('/admin');
     },
 
