@@ -77,8 +77,9 @@ const adminControllers = {
     editItem: async (req, res) => {
         const id = req.params.id;
         const item = req.body;
+        const files = req.files;
 
-        await ItemsService.editItem(item, id);
+        await ItemsService.editItem(item, files, id);
         res.redirect('/admin');
     },
 

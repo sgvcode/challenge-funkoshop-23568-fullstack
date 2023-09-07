@@ -30,7 +30,7 @@ const createItem = async (item, files) => {
 }
 
 
-const editItem = async (item, id) => {
+const editItem = async (item, files, id) => {
     const itemSchema = {
         product_name: item.name,
         product_description: item.description,
@@ -39,10 +39,15 @@ const editItem = async (item, id) => {
         discount: item.discount,
         sku: item.sku,
         dues: item.dues,
-        image_front: '/' + files[0].filename,
-        image_back: '/' + files[1].filename,
+        // image_front: '/' + files[0].filename,
+        // image_back: '/' + files[1].filename,
         licence_id: item.collection,
         category_id: item.category
+    };
+    if (files && files[0] && files[1]) {
+        // Verifica si existen archivos y están definidos antes de asignar las imágenes
+        itemSchema.image_front = '/' + files[0].filename;
+        itemSchema.image_back = '/' + files[1].filename;
     }
 
     return await ItemModel.editItem(itemSchema, { product_id: id });
