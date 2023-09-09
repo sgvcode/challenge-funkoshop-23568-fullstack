@@ -1,4 +1,8 @@
-const LicenceService = require('../services/licenceService');
+import licenceService from '../services/licenceService';
+import itemService from '../services/itemServices';
+import categoryService from '../services/categoryService';
+
+// const LicenceService = require('../services/licenceService');
 
 const mainControllers = {
     homeView: async (req, res) => {
@@ -6,12 +10,18 @@ const mainControllers = {
         req.session.count = req.session.count ? ++req.session.count : 1;
         // console.log(req.session.count);
 
-        const licences = await LicenceService.getAllItemsLicences();
+        const licences = await licenceService.getLicences();
+        const items = await itemService.getItems();
+        const categories = await categoryService.getCategories();
         res.render('home', {
             view: {
                 title: "Home | Funkoshop"
             },
             collections: licences.data,
+            categories: categories.data,
+            sliderTitle: 'Últimos lanzamientos',
+            items: items.data,
+            licences: licences.data,
             enableGlide: true
         })
     },

@@ -59,6 +59,24 @@ const getItem = async (params) => {
     }
 };
 
+const getAllItemsLicences = async (licence_id) => {
+    try {
+        const [rows] = await conn.query('SELECT * FROM product WHERE licence_id = ?', licence_id);
+        const response = {
+            isError: false,
+            data: rows
+        };
+        return response;
+    } catch (e) {
+        const error = {
+            isError: true,
+            message: `No pudimos recuperar los datos ${e}.`
+        };
+        return error;
+    }
+}
+
+
 const createItem = async (params) => {
     try {
         const [rows] = await conn.query('INSERT INTO product (product_name, product_description, price, stock, discount, sku, dues, image_front, image_back, licence_id, category_id) VALUES ?;', [params]);
@@ -122,5 +140,6 @@ module.exports = {
     getItem,
     createItem,
     editItem,
-    deleteItem
+    deleteItem,
+    getAllItemsLicences
 }
