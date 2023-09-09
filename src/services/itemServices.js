@@ -8,6 +8,10 @@ const getOne = async (id) => {
     return await ItemModel.getOne({ product_id: id });
 }
 
+const getLicences = async (licence_id) => {
+    return await ItemModel.getLicences(licence_id);
+}
+
 const getItem = async (id) => {
     return await ItemModel.getItem({ product_id: id });
 }
@@ -63,5 +67,6 @@ module.exports = {
     getItem,
     createItem,
     editItem,
-    deleteItem
+    deleteItem,
+    getLicences,
 }

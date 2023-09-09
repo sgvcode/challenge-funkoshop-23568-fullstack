@@ -12,6 +12,7 @@ const mainControllers = {
                 title: "Home | Funkoshop"
             },
             collections: licences.data,
+            sliderTitle: "Ultimos lanzamientos",
             enableGlide: true
         })
     },
