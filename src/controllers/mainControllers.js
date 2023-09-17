@@ -3,8 +3,8 @@ const LicenceService = require('../services/licenceService');
 const mainControllers = {
     homeView: async (req, res) => {
 
-        req.session.count = req.session.count ? ++req.session.count : 1;
-        // console.log(req.session.count);
+        // req.session.count = req.session.count ? ++req.session.count : 1;
+        // // console.log(req.session.count);
 
         const licences = await LicenceService.getAllItemsLicences();
         res.render('home', {
