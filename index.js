@@ -24,7 +24,7 @@ app.use((req, res, next) => {
 
 // Configuracion de EJS
 app.set('view engine', 'ejs');
-app.set('views', './src/views');
+app.set('views', path.resolve(__dirname, './src/views'));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
