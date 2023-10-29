@@ -1,10 +1,16 @@
 <footer class="footer">
     <nav class="navbar container">
         <ul class="navbar__item">
-            <li class="navbar__item"><a class="navbar__link" href="/shop">SHOP</a></li>
-            <li class="navbar__item"><a class="navbar__link" href="/auth/login">INGRESAR</a></li>
-            <li class="navbar__item"><a class="navbar__link" href="/auth/register">REGISTRARSE</a></li>
-            <li class="navbar__item"><a class="navbar__link" href="/contact">CONTACTO</a></li>
+            <% if (locals.isLogged) { %>
+                <li class="navbar__item"><a class="navbar__link" href="/shop">SHOP</a></li>
+                <li class="navbar__item"><a class="navbar__link" href="/auth/logout">SALIR</a></li>
+                <li class="navbar__item"><a class="navbar__link" href="/contact">CONTACTO</a></li>
+                <% } else { %>
+                    <li class="navbar__item"><a class="navbar__link" href="/shop">SHOP</a></li>
+                    <li class="navbar__item"><a class="navbar__link" href="/auth/login">INGRESAR</a></li>
+                    <li class="navbar__item"><a class="navbar__link" href="/auth/register">REGISTRARSE</a></li>
+                    <li class="navbar__item"><a class="navbar__link" href="/contact">CONTACTO</a></li>
+                    <% } %>
         </ul>
         <picture>
             <a href="/home">
