@@ -11,25 +11,33 @@ const shopControllers = {
             items: data
         });
     },
+
     itemView: async (req, res) => {
         const id = req.params.id;
-        const item = await ItemsService.getItem(id);
-        const { data } = item;
+        const itemResponse = await ItemsService.getItem(id);
+        const allItemsResponse = await ItemsService.getAllItems();
+
+        const { data: item } = itemResponse;
+        const { data: allItems } = allItemsResponse;
+
+        // Filtra los items para incluir solo aquellos de la misma licencia que el item individual
+        const relatedItems = allItems.filter(i => i.licence_id === item[0].licence_id && i.product_id !== item[0].product_id);
 
         res.render('./shop/item', {
             view: {
                 title: "Items | Funkoshop"
             },
-            item: data[0],
+            item: item[0],
             enableGlide: true,
-            sliderTitle: 'Productos Relacionados'
+            sliderTitle: 'Productos Relacionados',
+            items: relatedItems
         });
     },
 
     addToCart: async (req, res) => {
         const id = req.params.id;
         const item = await ItemsService.getItem(id);
-        console.log(item);
+        // console.log(item);
 
         if (item.data.length > 0) {
             // Agrega el item al carrito directamente en el controlador

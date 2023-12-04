@@ -43,8 +43,6 @@ const editItem = async (item, files, id) => {
         discount: item.discount,
         sku: item.sku,
         dues: item.dues,
-        // image_front: '/' + files[0].filename,
-        // image_back: '/' + files[1].filename,
         licence_id: item.collection,
         category_id: item.category
     };
