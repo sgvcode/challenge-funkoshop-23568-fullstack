@@ -2,33 +2,23 @@ const ItemsService = require('../services/itemServices');
 
 const shopControllers = {
     shopView: async (req, res) => {
-        const { page = 1, limit = 12 } = req.query;
-
         try {
-            const itemsResponse = await ItemsService.getPaginated(page, limit);
+            const { page = 1, limit = 9 } = req.query; // Puedes ajustar el límite según tus necesidades
 
-            if (itemsResponse.isError) {
-                console.error('Error en shopView - itemsResponse:', itemsResponse);
-                return res.status(500).send('Error interno del servidor');
-            }
-
-            const { data: items, totalPages } = itemsResponse;
-
-            if (!items) {
-                console.error('Error en shopView: La lista de productos es undefined');
-                return res.status(500).send('Error interno del servidor');
-            }
+            // Obtén los datos paginados
+            const paginatedItems = await ItemsService.getPaginated(page, limit);
+            const { data, totalPages } = paginatedItems;
 
             res.render('../views/shop/shop', {
                 view: {
                     title: "Shop | Funkoshop"
                 },
-                items,
+                items: data,
+                totalPages,
                 currentPage: parseInt(page),
-                totalPages
             });
         } catch (error) {
-            console.error(`Error en shopView: ${error}`);
+            console.error('Error en shopView:', error);
             res.status(500).send('Error interno del servidor');
         }
     },

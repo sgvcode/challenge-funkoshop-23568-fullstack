@@ -135,18 +135,27 @@ const deleteItem = async (params) => {
 // Paginación de productos
 const getPaginated = async (offset, limit) => {
     try {
-        const [rows] = await conn.query('SELECT * FROM product LIMIT ?, ?;', [offset, limit]);
+        const [rows] = await conn.query(
+            'SELECT product.*, category.category_name, licence.licence_name ' +
+            'FROM (product LEFT JOIN category ON product.category_id = category.category_id) ' +
+            'LEFT JOIN licence ON product.licence_id = licence.licence_id ' +
+            'LIMIT ?, ?;',
+            [offset, limit]
+        );
+
         const response = {
             isError: false,
             data: rows
         };
+
         return response;
-    } catch (e) {
-        const error = {
+    } catch (error) {
+        const errorResponse = {
             isError: true,
-            message: `Error al obtener datos paginados: ${e}`
+            message: `Error al obtener datos paginados: ${error}`
         };
-        return error;
+
+        return errorResponse;
     }
 };
 

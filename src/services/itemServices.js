@@ -61,8 +61,8 @@ const deleteItem = async (id) => {
 // Paginación de productos
 const getPaginated = async (page, limit) => {
     try {
-        const totalItemsResponse = await ItemModel.getTotalItems();
-        const totalItems = totalItemsResponse.data;
+        const totalItemsResponse = await ItemModel.getAll();
+        const totalItems = totalItemsResponse.data.length;
 
         const totalPages = Math.ceil(totalItems / limit);
 
@@ -83,16 +83,6 @@ const getPaginated = async (page, limit) => {
     }
 };
 
-const getTotalItems = async () => {
-    try {
-        const totalItems = await ItemModel.getTotalItems();
-        return totalItems;
-    } catch (error) {
-        console.error(`Error al obtener el total de elementos: ${error}`);
-        throw error;
-    }
-};
-
 module.exports = {
     getAllItems,
     getOne,
@@ -102,5 +92,4 @@ module.exports = {
     deleteItem,
     getLicences,
     getPaginated,
-    getTotalItems
-}
+};

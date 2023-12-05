@@ -66,7 +66,8 @@
                                     </picture>
                                     <div class="card-item__content">
                                         <p class="card-item__licence">
-                                            <%= item.licence_name %>
+                                            <% console.log("Licencia del producto:", item.licence_name) %>
+                                                <%= item.licence_name %>
                                         </p>
                                         <h4 class="card-item__name">
                                             <%= item.product_name %>
@@ -83,6 +84,13 @@
                         </li>
                         <% }) %>
                             <div class="pagination">
+                                <!-- <a class="pagination__link" href="#">&lt;</a>
+                                <a class="pagination__link pagination__link--selected" href="#">1</a>
+                                <a class="pagination__link" href="#">2</a>
+                                <a class="pagination__link" href="#">3</a>
+                                <a class="pagination__link" href="#">4</a>
+                                <a class="pagination__link" href="#">5</a>
+                                <a class="pagination__link" href="#">&gt;</a> -->
 
                                 <% for (let i=1; i <=totalPages; i++) { %>
                                     <% console.log("Iteración del bucle - i:", i) %>
