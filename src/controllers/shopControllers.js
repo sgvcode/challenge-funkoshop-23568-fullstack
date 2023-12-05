@@ -2,14 +2,35 @@ const ItemsService = require('../services/itemServices');
 
 const shopControllers = {
     shopView: async (req, res) => {
-        const items = await ItemsService.getAllItems();
-        const { data } = items;
-        res.render('../views/shop/shop', {
-            view: {
-                title: "Shop | Funkoshop"
-            },
-            items: data
-        });
+        const { page = 1, limit = 12 } = req.query;
+
+        try {
+            const itemsResponse = await ItemsService.getPaginated(page, limit);
+
+            if (itemsResponse.isError) {
+                console.error('Error en shopView - itemsResponse:', itemsResponse);
+                return res.status(500).send('Error interno del servidor');
+            }
+
+            const { data: items, totalPages } = itemsResponse;
+
+            if (!items) {
+                console.error('Error en shopView: La lista de productos es undefined');
+                return res.status(500).send('Error interno del servidor');
+            }
+
+            res.render('../views/shop/shop', {
+                view: {
+                    title: "Shop | Funkoshop"
+                },
+                items,
+                currentPage: parseInt(page),
+                totalPages
+            });
+        } catch (error) {
+            console.error(`Error en shopView: ${error}`);
+            res.status(500).send('Error interno del servidor');
+        }
     },
 
     itemView: async (req, res) => {

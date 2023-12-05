@@ -33,7 +33,6 @@ const createItem = async (item, files) => {
     return await ItemModel.createItem([Object.values(itemSchema)]);
 }
 
-
 const editItem = async (item, files, id) => {
     const itemSchema = {
         product_name: item.name,
@@ -59,6 +58,41 @@ const deleteItem = async (id) => {
     return await ItemModel.deleteItem({ product_id: id });
 }
 
+// Paginación de productos
+const getPaginated = async (page, limit) => {
+    try {
+        const totalItemsResponse = await ItemModel.getTotalItems();
+        const totalItems = totalItemsResponse.data;
+
+        const totalPages = Math.ceil(totalItems / limit);
+
+        const offset = (page - 1) * limit;
+        const response = await ItemModel.getPaginated(offset, limit);
+
+        return {
+            isError: false,
+            data: response.data,
+            totalPages
+        };
+    } catch (error) {
+        console.error('Error en getPaginated:', error);
+        return {
+            isError: true,
+            message: 'Error al obtener datos paginados.'
+        };
+    }
+};
+
+const getTotalItems = async () => {
+    try {
+        const totalItems = await ItemModel.getTotalItems();
+        return totalItems;
+    } catch (error) {
+        console.error(`Error al obtener el total de elementos: ${error}`);
+        throw error;
+    }
+};
+
 module.exports = {
     getAllItems,
     getOne,
@@ -67,4 +101,6 @@ module.exports = {
     editItem,
     deleteItem,
     getLicences,
+    getPaginated,
+    getTotalItems
 }

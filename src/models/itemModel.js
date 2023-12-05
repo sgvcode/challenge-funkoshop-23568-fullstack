@@ -132,7 +132,40 @@ const deleteItem = async (params) => {
     }
 };
 
+// Paginación de productos
+const getPaginated = async (offset, limit) => {
+    try {
+        const [rows] = await conn.query('SELECT * FROM product LIMIT ?, ?;', [offset, limit]);
+        const response = {
+            isError: false,
+            data: rows
+        };
+        return response;
+    } catch (e) {
+        const error = {
+            isError: true,
+            message: `Error al obtener datos paginados: ${e}`
+        };
+        return error;
+    }
+};
 
+const getTotalItems = async () => {
+    try {
+        const [rows] = await conn.query('SELECT COUNT(*) AS total FROM product');
+        const response = {
+            isError: false,
+            data: rows[0].total
+        };
+        return response;
+    } catch (e) {
+        const error = {
+            isError: true,
+            message: `Error al obtener el total de elementos: ${e}`
+        };
+        return error;
+    }
+};
 
 module.exports = {
     getAll,
@@ -141,5 +174,7 @@ module.exports = {
     createItem,
     editItem,
     deleteItem,
-    getAllItemsLicences
+    getAllItemsLicences,
+    getPaginated,
+    getTotalItems
 }
