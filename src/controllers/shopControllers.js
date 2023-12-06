@@ -3,9 +3,9 @@ const ItemsService = require('../services/itemServices');
 const shopControllers = {
     shopView: async (req, res) => {
         try {
-            const { page = 1, limit = 9 } = req.query; // Puedes ajustar el límite según tus necesidades
+            const { page = 1, limit = 9 } = req.query;
 
-            // Obtén los datos paginados
+            // Obtener los datos paginados
             const paginatedItems = await ItemsService.getPaginated(page, limit);
             const { data, totalPages } = paginatedItems;
 
