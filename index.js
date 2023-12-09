@@ -4,10 +4,11 @@ const path = require('path');
 const methodOverride = require('method-override');
 // const session = require('express-session');
 const initSession = require('./src/utils/session');
+const cors = require('cors');
 
 require('dotenv').config();
 
-const PORT = process.env.APP_PORT || 3001;
+const PORT = process.env.APP_PORT || 3005;
 
 const adminRoutes = require('./src/routes/adminRoutes');
 const mainRoutes = require('./src/routes/mainRoutes');
@@ -15,7 +16,7 @@ const shopRoutes = require('./src/routes/shopRoutes');
 const authRoutes = require('./src/routes/authRoutes');
 
 app.use(express.static(path.resolve(__dirname, 'public_html')));
-
+app.use(cors());
 app.use(initSession());
 app.use((req, res, next) => {
     res.locals.isLogged = req.session.isLogged;
