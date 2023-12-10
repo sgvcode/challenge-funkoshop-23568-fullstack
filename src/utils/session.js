@@ -8,6 +8,7 @@ function initSession() {
         secret: process.env.SESSION_NAME, // Cambia esto por una cadena secreta segura
         resave: false,
         saveUninitialized: true,
+        cookie: { secure: false }
     });
 };
 
