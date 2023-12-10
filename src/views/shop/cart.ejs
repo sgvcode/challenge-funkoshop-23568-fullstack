@@ -137,6 +137,25 @@
                                                         });
                                                     });
 
+                                                    // function updateCartItemQuantity(productId, action) {
+                                                    //     const quantityInput = document.getElementById(`quantityOne${productId}`);
+                                                    //     const quantity = parseInt(quantityInput.value) || 1;
+
+                                                    //     fetch(`/shop/cart/updateQuantity/${productId}/${action}`, {
+                                                    //         method: 'POST',
+                                                    //         headers: {
+                                                    //             'Content-Type': 'application/json',
+                                                    //         },
+                                                    //         body: JSON.stringify({ quantity }),
+                                                    //     }).then(response => response.json())
+                                                    //         .then(data => {
+                                                    //             // Actualizar la vista con la nueva información del carrito
+                                                    //             // (código relevante aquí)
+                                                    //         }).catch(error => {
+                                                    //             console.error('Error al actualizar la cantidad del carrito:', error);
+                                                    //         });
+                                                    // }
+
                                                     function updateCartItemQuantity(productId, action) {
                                                         const quantityInput = document.getElementById(`quantityOne${productId}`);
                                                         const quantity = parseInt(quantityInput.value) || 1;
@@ -147,25 +166,47 @@
                                                                 'Content-Type': 'application/json',
                                                             },
                                                             body: JSON.stringify({ quantity }),
-                                                        }).then(response => response.json())
+                                                        })
+                                                            .then(response => response.json())
                                                             .then(data => {
                                                                 // Actualizar la vista con la nueva información del carrito
-                                                                // (código relevante aquí)
-                                                            }).catch(error => {
+                                                                if (data.success) {
+                                                                    // Ejemplo: Actualizar el valor del input
+                                                                    quantityInput.value = data.cartItem.quantity;
+
+                                                                    // Puedes realizar otras actualizaciones en el DOM según sea necesario
+                                                                } else {
+                                                                    console.error('Error al actualizar la cantidad del carrito:', data.error);
+                                                                }
+                                                            })
+                                                            .catch(error => {
                                                                 console.error('Error al actualizar la cantidad del carrito:', error);
                                                             });
                                                     }
 
+
                                                     function deleteCartItem(productId) {
                                                         fetch(`/shop/cart/delete/${productId}`, {
                                                             method: 'POST',
-                                                        }).then(response => response.json())
+                                                        })
+                                                            .then(response => response.json())
                                                             .then(data => {
                                                                 // Actualizar la vista con la nueva información del carrito
-                                                                // (código relevante aquí)
-                                                            }).catch(error => {
+                                                                if (data.success) {
+                                                                    // Ejemplo: Eliminar el elemento del DOM
+                                                                    const itemToRemove = document.getElementById(`cartItem-${data.deletedProductId}`);
+                                                                    if (itemToRemove) {
+                                                                        itemToRemove.remove();
+                                                                    }
+                                                                    // Puedes realizar otras actualizaciones en el DOM según sea necesario
+                                                                } else {
+                                                                    console.error('Error al eliminar el artículo del carrito:', data.error);
+                                                                }
+                                                            })
+                                                            .catch(error => {
                                                                 console.error('Error al eliminar el artículo del carrito:', error);
                                                             });
                                                     }
+
                                                 });
                                             </script>

@@ -185,9 +185,8 @@ const shopControllers = {
 
             // Actualizar la cantidad y el total en el carrito (no olvides actualizar también en la sesión o localStorage)
             cartItem.total = cartItem.price * cartItem.quantity;
+            res.json({ success: true, cart, cartItem });
 
-            // Redirigir o responder según sea necesario
-            res.redirect('/shop/cart');
         } catch (error) {
             console.error('Error en updateQuantity:', error);
             res.status(500).send('Error interno del servidor');
@@ -203,7 +202,7 @@ const shopControllers = {
             req.session.cart = cart.filter(item => String(item.product_id) !== String(productId));
 
             // Redirigir o responder según sea necesario
-            res.redirect('/shop/cart');
+            res.json({ success: true, cart, deletedProductId: productId });
         } catch (error) {
             console.error('Error en deleteCart:', error);
             res.status(500).send('Error interno del servidor');
