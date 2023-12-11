@@ -7,8 +7,9 @@ router.get('/item/:id', shopControllers.itemView);
 router.post('/item/:id/add', shopControllers.addToCart);
 router.get('/cart', shopControllers.cart);
 router.get('/cart/count', shopControllers.getCartCount);
-router.post('/updateQuantity/:productId/:action', shopControllers.updateQuantity);
 
-router.post('/cart', shopControllers.checkout);
+router.post('/cart/updateQuantity/:productId/:action', shopControllers.updateQuantity);
+router.post('/cart/delete/:id', shopControllers.deleteCart);
+router.post('/cart/checkout', shopControllers.checkout);
 
 module.exports = router;

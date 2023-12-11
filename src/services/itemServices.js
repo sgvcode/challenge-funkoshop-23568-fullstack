@@ -58,6 +58,23 @@ const deleteItem = async (id) => {
     return await ItemModel.deleteItem({ product_id: id });
 }
 
+const addToCart = async (productId, quantity) => {
+    try {
+        const [rows] = await conn.query('INSERT INTO cart (product_id, quantity, created_at) VALUES (?, ?, current_timestamp());', [productId, quantity]);
+        const response = {
+            isError: false,
+            data: rows
+        };
+        return response;
+    } catch (e) {
+        const error = {
+            isError: true,
+            message: `No pudimos agregar el producto al carrito: ${e}`
+        };
+        return error;
+    }
+}
+
 // Paginación de productos
 const getPaginated = async (page, limit) => {
     try {
@@ -83,6 +100,44 @@ const getPaginated = async (page, limit) => {
     }
 };
 
+// Servicio para actualizar la cantidad de un producto en el carrito
+const updateQuantity = async (productId, newQuantity) => {
+    try {
+        // Lógica para actualizar la cantidad en la base de datos
+        await ItemModel.updateQuantity(productId, newQuantity);
+        const response = {
+            isError: false,
+            message: `Cantidad actualizada exitosamente.`
+        };
+        return response;
+    } catch (error) {
+        const errorResponse = {
+            isError: true,
+            message: `Error al actualizar la cantidad: ${error}`
+        };
+        return errorResponse;
+    }
+};
+
+// Servicio para eliminar un producto del carrito
+const deleteCart = async (productId) => {
+    try {
+        // Lógica para eliminar el producto del carrito en la base de datos
+        await ItemModel.deleteCart(productId);
+        const response = {
+            isError: false,
+            message: `Producto eliminado exitosamente.`
+        };
+        return response;
+    } catch (error) {
+        const errorResponse = {
+            isError: true,
+            message: `Error al eliminar el producto del carrito: ${error}`
+        };
+        return errorResponse;
+    }
+};
+
 module.exports = {
     getAllItems,
     getOne,
@@ -92,4 +147,7 @@ module.exports = {
     deleteItem,
     getLicences,
     getPaginated,
+    updateQuantity,
+    deleteCart,
+    addToCart,
 };

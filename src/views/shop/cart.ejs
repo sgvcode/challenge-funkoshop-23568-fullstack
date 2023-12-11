@@ -27,23 +27,23 @@
                             <p class="cart__item--price price">Precio unitario: $<%= item.price %>
                             </p>
                         </div>
+
                         <div class="col-5 col-md-2 col-lg-2 d-flex">
                             <input class="items__input items__input--cart" type="text" name="quantity"
-                                id="<%= 'quantityOne' + item.product_id %>" value="<%= item.quantity %>"
-                                placeholder="0">
+                                id="<%= 'quantityOne' + item.product_id %>" value="<%= item.quantity %>" placeholder="">
                             <div class="items__cart--btn">
                                 <button data-productid="<%= item.product_id %>" class="items__cart--mas red">+</button>
                                 <button data-productid="<%= item.product_id %>"
                                     class="items__cart--menos red">-</button>
-
                             </div>
                         </div>
-                        <div class="col-6 col-md-2 col-lg-2 cart__item--total">$ <%= item.total %>
+                        <!-- <div class="col-6 col-md-2 col-lg-2 cart__item--total">$ <%= item.total %> -->
+                        <div class="col-6 col-md-2 col-lg-2 cart__item--total" id="<%= 'total' + item.product_id %>">$
+                            <%= item.total %>
                         </div>
-                        <!-- <button onclick="deleteItem('<%= item.product_id %>')"
-                            class="col-1 col-md-1 col-lg-1 d-flex justify-content-end cart__delete">
-                            <iconify-icon class="cart__item--delete" icon="iconoir:delete-circle"></iconify-icon>
-                        </button> -->
+
+                        </div>
+
                         <button data-productid="<%= item.product_id %>"
                             class="col-1 col-md-1 col-lg-1 d-flex justify-content-end cart__delete">
                             <iconify-icon class="cart__item--delete" icon="iconoir:delete-circle"></iconify-icon>
@@ -64,12 +64,15 @@
                         <p class="text-left">Cantidad de Elementos</p>
                         <p class="text-left">Subtotal</p>
                         <p class="text-left">Envío</p>
+                        <p class="text-left">Cantidad de Elementos</p>
+                        <p class="text-left">Subtotal</p>
+                        <p class="text-left">Envío</p>
                     </div>
                     <div class="col-12 col-md-4 col-lg-6 resume__text">
-                        <p class="text-right">
+                        <p id="cartItemCount" class="text-right">
                             <%= getTotalQuantity(cart) %>
                         </p>
-                        <p class="text-right">$ <%= getSubtotal(cart) %>
+                        <p id="cartSubtotal" class="text-right">$ <%= getSubtotal(cart) %>
                         </p>
                         <p class="text-right">$ 0,00</p>
                     </div>
@@ -78,7 +81,8 @@
                         <p class="total-left">TOTAL</p>
                     </div>
                     <div class="col-12 col-md-4 col-lg-6 p-0">
-                        <p class="total-right">$ <%= getCartTotal(cart) %>
+                        <p id="cartTotal" class="text-right">$ <%= getCartTotal(cart) %>
+                        </p>
                         </p>
                     </div>
                 </div>
@@ -90,7 +94,7 @@
     <%- include('../partials/footer') %>
 
         <% function getTotalQuantity(cart) { %>
-            <%= cart.reduce((total, item)=> total + item.quantity, 0) %>
+            <%= cart.reduce((total, item)=> total + item.quantity, 0).toFixed(2) %>
                 <% } %>
 
                     <% function getSubtotal(cart) { %>
@@ -107,68 +111,92 @@
                                                     const quantityInputs = document.querySelectorAll('.items__input--cart');
                                                     const addButtons = document.querySelectorAll('.items__cart--mas');
                                                     const subtractButtons = document.querySelectorAll('.items__cart--menos');
-                                                    const deleteButtons = document.querySelectorAll('.cart__item--delete');
+                                                    const deleteButtons = document.querySelectorAll('.cart__delete');
 
                                                     addButtons.forEach(button => {
                                                         button.addEventListener('click', function () {
-                                                            const productId = button.getAttribute('data-productid');
-                                                            updateQuantity(productId, 'addOne');
+                                                            const productId = this.getAttribute('data-productid');
+                                                            updateCartItemQuantity(productId, 'add');
                                                         });
                                                     });
 
                                                     subtractButtons.forEach(button => {
                                                         button.addEventListener('click', function () {
-                                                            const productId = button.getAttribute('data-productid');
-                                                            updateQuantity(productId, 'subtractOne');
+                                                            const productId = this.getAttribute('data-productid');
+                                                            updateCartItemQuantity(productId, 'subtract');
                                                         });
                                                     });
 
                                                     deleteButtons.forEach(button => {
                                                         button.addEventListener('click', function () {
-                                                            const productId = button.getAttribute('data-productid');
-                                                            deleteItem(productId);
+                                                            const productId = this.getAttribute('data-productid');
+                                                            deleteCartItem(productId);
                                                         });
                                                     });
+
+                                                    function updateCartItemQuantity(productId, action) {
+                                                        const quantityInput = document.getElementById(`quantityOne${productId}`);
+                                                        const totalElement = document.getElementById(`total${productId}`);
+                                                        const cartItemCount = document.getElementById('cartItemCount');
+                                                        const cartSubtotal = document.getElementById('cartSubtotal');
+                                                        const cartTotal = document.getElementById('cartTotal');
+                                                        const summaryElement = document.getElementById('cartSummary');
+
+                                                        const quantity = parseInt(quantityInput.value) || 1;
+
+                                                        fetch(`/shop/cart/updateQuantity/${productId}/${action}`, {
+                                                            method: 'POST',
+                                                            headers: {
+                                                                'Content-Type': 'application/json',
+                                                            },
+                                                            body: JSON.stringify({ quantity }),
+                                                        })
+                                                            .then(response => response.json())
+                                                            .then(data => {
+                                                                if (data.success) {
+                                                                    quantityInput.value = data.cartItem.quantity;
+
+                                                                    if (totalElement) {
+                                                                        totalElement.textContent = `$ ${data.cartItem.total.toFixed(2)}`;
+                                                                    }
+
+                                                                    // Actualiza los valores en el resumen
+                                                                    if (cartItemCount && cartSubtotal && cartTotal) {
+                                                                        cartItemCount.textContent = data.cart.reduce((acc, item) => acc + item.quantity, 0);
+                                                                        cartSubtotal.textContent = `$ ${data.cart.reduce((acc, item) => acc + item.total, 0).toFixed(2)}`;
+                                                                        cartTotal.textContent = `$ ${data.cart.reduce((acc, item) => acc + item.total, 0).toFixed(2)}`;
+                                                                    }
+
+                                                                    if (summaryElement) {
+                                                                        summaryElement.textContent = `$ ${data.cart.reduce((acc, item) => acc + item.total, 0).toFixed(2)}`;
+                                                                    }
+
+                                                                } else {
+                                                                    console.error('Error al actualizar la cantidad del carrito:', data.error);
+                                                                }
+                                                            })
+                                                            .catch(error => {
+                                                                console.error('Error al actualizar la cantidad del carrito:', error);
+                                                            });
+                                                    }
+
+                                                    function deleteCartItem(productId) {
+                                                        fetch(`/shop/cart/delete/${productId}`, {
+                                                            method: 'POST',
+                                                        })
+                                                            .then(response => response.json())
+                                                            .then(data => {
+                                                                if (data.success) {
+                                                                    // Recarga la página automáticamente después de eliminar el elemento del carrito
+                                                                    location.reload();
+                                                                } else {
+                                                                    console.error('Error al eliminar el artículo del carrito:', data.error);
+                                                                }
+                                                            })
+                                                            .catch(error => {
+                                                                console.error('Error al eliminar el artículo del carrito:', error);
+                                                            });
+                                                    }
+
                                                 });
-
-                                                function updateQuantity(product_id, action) {
-                                                    // Lógica para actualizar la cantidad en el carrito
-                                                    console.log(`Actualizar cantidad del producto ${product_id} - Acción: ${action}`);
-
-                                                    fetch(`/updateQuantity/${product_id}/${action}`, {
-                                                        method: 'POST',
-                                                        headers: {
-                                                            'Content-Type': 'application/json',
-                                                        },
-                                                    })
-                                                        .then(response => response.json())
-                                                        .then(data => {
-                                                            console.log('Respuesta del servidor:', data);
-                                                            // Puedes hacer más cosas aquí según la respuesta del servidor
-                                                        })
-                                                        .catch(error => {
-                                                            console.error('Error al actualizar la cantidad:', error);
-                                                        });
-                                                }
-
-                                                function deleteItem(product_id) {
-                                                    // Lógica para eliminar el ítem del carrito
-                                                    console.log(`Eliminar producto del carrito - Producto ID: ${product_id}`);
-
-                                                    fetch(`/deleteItem/${product_id}`, {
-                                                        method: 'DELETE',
-                                                        headers: {
-                                                            'Content-Type': 'application/json',
-                                                        },
-                                                    })
-                                                        .then(response => response.json())
-                                                        .then(data => {
-                                                            console.log('Respuesta del servidor:', data);
-                                                            // Puedes hacer más cosas aquí según la respuesta del servidor
-                                                        })
-                                                        .catch(error => {
-                                                            console.error('Error al eliminar el ítem:', error);
-                                                        });
-                                                }
-
                                             </script>
