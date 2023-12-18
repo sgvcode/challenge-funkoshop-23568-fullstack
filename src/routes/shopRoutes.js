@@ -12,4 +12,6 @@ router.post('/cart/updateQuantity/:productId/:action', shopControllers.updateQua
 router.post('/cart/delete/:id', shopControllers.deleteCart);
 router.post('/cart/checkout', shopControllers.checkout);
 
+router.get('/page/:page', shopControllers.shopView); //Para paginación
+
 module.exports = router;

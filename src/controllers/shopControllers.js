@@ -1,20 +1,41 @@
 const ItemsService = require('../services/itemServices');
+const licenceServices = require('../services/licenceService');
+const itemModel = require('../models/itemModel');
 
 const shopControllers = {
     shopView: async (req, res) => {
         try {
+            // Definir los parametros de consulta
             const { page = 1, limit = 9 } = req.query;
 
-            // Obtener los datos paginados
-            const paginatedItems = await ItemsService.getPaginated(page, limit);
-            const { data, totalPages } = paginatedItems;
+            // Obtener la licencia seleccionada desde la consulta
+            const selectedLicence = req.query.licence;
 
+            let items; // Variable que almacena la cantidad de productos
+            let totalPages; // Variable para almacenar el número total de páginas
+
+            if (selectedLicence) {
+                // Si hay una licencia seleccionada, obtener productos filtrados por licencia
+                const licencedItems = await itemModel.getAllItemsLicences(selectedLicence);
+                items = licencedItems.data;
+            } else {
+                // Si no hay licencia seleccionada, obtener datos paginados de todos los productos
+                const paginatedItems = await ItemsService.getPaginated(page, limit);
+                items = paginatedItems.data;
+                totalPages = paginatedItems.totalPages;
+            }
+
+            // Obtener todas las licencias para mostrar en el formulario de búsqueda
+            const licences = await licenceServices.getAllItemsLicences();
+
+            // Renderizar la página con los productos y las licencias
             res.render('../views/shop/shop', {
                 view: {
                     title: "Shop | Funkoshop"
                 },
-                items: data,
-                totalPages,
+                items,
+                licences: licences.data,
+                totalPages: totalPages || 1,
                 currentPage: parseInt(page),
             });
         } catch (error) {
@@ -39,7 +60,7 @@ const shopControllers = {
                 return;
             }
 
-            // Filtra los items para incluir solo aquellos de la misma licencia que el item individual
+            // Filtrar los items para incluir solo aquellos de la misma licencia que el item individual
             const relatedItems = allItems.filter(i => i.licence_id === item[0].licence_id && i.product_id !== item[0].product_id);
 
             res.render('./shop/item', {
@@ -59,8 +80,8 @@ const shopControllers = {
 
     cart: async (req, res) => {
         try {
-            // Lógica para obtener el carrito (puedes almacenarlo en la sesión o en localStorage)
-            const cart = req.session.cart || []; // Utilizando sesión como ejemplo
+            // Lógica para obtener el carrito
+            const cart = req.session.cart || [];
 
             res.render('../views/shop/cart', {
                 view: {
@@ -97,7 +118,6 @@ const shopControllers = {
         }
     },
 
-    // shopControllers.js
     addToCart: async (req, res) => {
         try {
             const productId = req.params.id;
@@ -114,7 +134,7 @@ const shopControllers = {
                 req.session.cart[cartItemIndex].quantity += parseInt(quantity);
                 req.session.cart[cartItemIndex].total = req.session.cart[cartItemIndex].price * req.session.cart[cartItemIndex].quantity;
             } else {
-                // Aquí, ajustamos la estructura del objeto que se agrega al carrito
+
                 const itemResponse = await ItemsService.getItem(productId);
 
                 if (!itemResponse || !itemResponse.data || itemResponse.data.length === 0) {

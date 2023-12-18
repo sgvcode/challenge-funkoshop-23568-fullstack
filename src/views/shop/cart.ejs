@@ -37,7 +37,6 @@
                                     class="items__cart--menos red">-</button>
                             </div>
                         </div>
-                        <!-- <div class="col-6 col-md-2 col-lg-2 cart__item--total">$ <%= item.total %> -->
                         <div class="col-6 col-md-2 col-lg-2 cart__item--total" id="<%= 'total' + item.product_id %>">$
                             <%= item.total %>
                         </div>
@@ -48,7 +47,7 @@
                             class="col-1 col-md-1 col-lg-1 d-flex justify-content-end cart__delete">
                             <iconify-icon class="cart__item--delete" icon="iconoir:delete-circle"></iconify-icon>
                         </button>
-                        <%= console.log(item) %>
+                        <!-- <%= console.log(item) %> -->
                     </article>
                     <% }) %>
             </section>
@@ -61,9 +60,6 @@
             <article>
                 <div class="row cart__card cart__resume">
                     <div class="col-12 col-md-4 col-lg-6 cart__card--titles">
-                        <p class="text-left">Cantidad de Elementos</p>
-                        <p class="text-left">Subtotal</p>
-                        <p class="text-left">Envío</p>
                         <p class="text-left">Cantidad de Elementos</p>
                         <p class="text-left">Subtotal</p>
                         <p class="text-left">Envío</p>
@@ -86,7 +82,7 @@
                         </p>
                     </div>
                 </div>
-                <button class="col-12 col-md-4 col-lg-6 cart__pay w-100">ir a pagar</button>
+                <button class="col-12 col-md-4 col-lg-6 cart__pay w-100" onclick="mensajeLogin()">ir a pagar</button>
             </article>
         </section>
     </main>
@@ -94,7 +90,7 @@
     <%- include('../partials/footer') %>
 
         <% function getTotalQuantity(cart) { %>
-            <%= cart.reduce((total, item)=> total + item.quantity, 0).toFixed(2) %>
+            <%= cart.reduce((total, item)=> total + item.quantity, 0) %>
                 <% } %>
 
                     <% function getSubtotal(cart) { %>
@@ -187,7 +183,7 @@
                                                             .then(response => response.json())
                                                             .then(data => {
                                                                 if (data.success) {
-                                                                    // Recarga la página automáticamente después de eliminar el elemento del carrito
+                                                                    // Recarga al eliminar el carrito
                                                                     location.reload();
                                                                 } else {
                                                                     console.error('Error al eliminar el artículo del carrito:', data.error);
@@ -199,4 +195,8 @@
                                                     }
 
                                                 });
+
+                                                function mensajeLogin() {
+                                                    alert('Para continuar con el pago, debes ser un usuario registrado!')
+                                                }
                                             </script>

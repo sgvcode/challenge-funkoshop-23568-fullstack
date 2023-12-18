@@ -25,8 +25,8 @@ const createItem = async (item, files) => {
         discount: item.discount,
         sku: item.sku,
         dues: item.dues,
-        image_front: '/' + files[0].filename,
-        image_back: '/' + files[1].filename,
+        image_front: files[0].filename,
+        image_back: files[1].filename,
         licence_id: item.collection,
         category_id: item.category
     }
@@ -47,8 +47,8 @@ const editItem = async (item, files, id) => {
     };
     if (files && files[0] && files[1]) {
         // Verifica si existen archivos y están definidos antes de asignar las imágenes
-        itemSchema.image_front = '/' + files[0].filename;
-        itemSchema.image_back = '/' + files[1].filename;
+        itemSchema.image_front = files[0].filename;
+        itemSchema.image_back = files[1].filename;
     }
 
     return await ItemModel.editItem(itemSchema, { product_id: id });
@@ -75,11 +75,11 @@ const addToCart = async (productId, quantity) => {
     }
 }
 
-// Paginación de productos
+// Obtenemos productos desde BD y configuramos la paginación
 const getPaginated = async (page, limit) => {
     try {
-        const totalItemsResponse = await ItemModel.getAll();
-        const totalItems = totalItemsResponse.data.length;
+        const totalItemsRes = await ItemModel.getAll();
+        const totalItems = totalItemsRes.data.length;
 
         const totalPages = Math.ceil(totalItems / limit);
 
