@@ -7,6 +7,19 @@
     margin: var(--spacing-68) 0;
 }
 
+.card-item__tag--items {
+    color: var(--blanco);
+    background-color: var(--rojo);
+    font-size: var(--font-18-medium);
+    /* padding: 40px var(--spacing-24); */
+    padding: 5px var(--spacing-24);
+    position: absolute;
+    /* border-radius: 50%; */
+    left: var(--spacing-20);
+    top: var(--spacing-68);
+    /* transform: rotate(-30deg); */
+}
+
 .items img {
     width: 100%;
 }
@@ -52,6 +65,7 @@
 
 .items__input {
     -moz-appearance: textfield;
+    appearance: textfield;
 }
 
 .items__input::-webkit-inner-spin-button,
