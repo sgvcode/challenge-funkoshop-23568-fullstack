@@ -16,6 +16,37 @@ const getItem = async (id) => {
     return await ItemModel.getItem({ product_id: id });
 }
 
+// Obtenemos los productos nuevos basados en la fecha de creación para mostrar en slider /home
+const getNewItems = async () => {
+    try {
+        const allItems = await ItemModel.getAll();
+
+        // Filtra los productos para obtener solo los que son 'nuevos'
+        const newItems = allItems.data.filter(item => esNuevo(item.create_time));
+
+        return {
+            isError: false,
+            data: newItems
+        };
+    } catch (error) {
+        console.error('Error en getNewItems:', error);
+        return {
+            isError: true,
+            message: 'Error al obtener productos nuevos.'
+        };
+    }
+};
+
+const esNuevo = (fechaCreacion) => {
+    const mesEnMilisegundos = 30 * 24 * 60 * 60 * 1000; // 30 días
+
+    // Calculamos la fecha actual menos un mes
+    const haceUnMes = new Date() - mesEnMilisegundos;
+
+    // Comparamos la fecha de creación con la fecha actual menos un mes
+    return new Date(fechaCreacion) > haceUnMes;
+};
+
 const createItem = async (item, files) => {
     const itemSchema = {
         product_name: item.name,
@@ -150,4 +181,5 @@ module.exports = {
     updateQuantity,
     deleteCart,
     addToCart,
+    getNewItems,
 };
