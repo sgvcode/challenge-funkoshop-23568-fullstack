@@ -5,7 +5,7 @@ const getAllItemsLicences = async () => {
 }
 
 const getLicence = async (id) => {
-    return await licenceModel.getLicence(id);
+    return await LicenceModel.getLicence(id);
 };
 
 
