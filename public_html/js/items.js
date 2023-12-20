@@ -75,10 +75,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const etiquetaNuevo = item.querySelector('.card-item__tag--items');
 
             // Muestra u oculta la etiqueta 'NUEVO' según si el producto es nuevo o no
-            if (nuevo) {
-                etiquetaNuevo.style.display = 'block';
-            } else {
-                etiquetaNuevo.style.display = 'none';
+            if (etiquetaNuevo) {
+                if (nuevo) {
+                    etiquetaNuevo.style.display = 'block';
+                } else {
+                    etiquetaNuevo.style.display = 'none';
+                }
             }
         });
     };

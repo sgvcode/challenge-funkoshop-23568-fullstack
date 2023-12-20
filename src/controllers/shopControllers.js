@@ -1,5 +1,5 @@
 const ItemsService = require('../services/itemServices');
-const licenceServices = require('../services/licenceService');
+const LicenceService = require('../services/licenceService');
 const itemModel = require('../models/itemModel');
 
 const shopControllers = {
@@ -26,7 +26,7 @@ const shopControllers = {
             }
 
             // Obtener todas las licencias para mostrar en el formulario de búsqueda
-            const licences = await licenceServices.getAllItemsLicences();
+            const licences = await LicenceService.getAllItemsLicences();
 
             // Renderizar la página con los productos y las licencias
             res.render('../views/shop/shop', {
