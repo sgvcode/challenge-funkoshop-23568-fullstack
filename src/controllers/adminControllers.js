@@ -59,11 +59,11 @@ const adminControllers = {
 
     editView: async (req, res) => {
         const id = req.params.id;
-        console.log('ID recibido:', id);
+
         const { data: categories } = await CategoryService.getAllItemsCategories();
         const { data: licences } = await LicenceService.getAllItemsLicences();
         const { data } = await ItemsService.getItem(id);
-        console.log(categories, licences);
+
         res.render('./admin/edit', {
             view: {
                 title: `Editar Producto #${id} | Admin Funkoshop`

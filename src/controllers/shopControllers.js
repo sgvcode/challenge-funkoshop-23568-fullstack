@@ -127,8 +127,6 @@ const shopControllers = {
             req.session.cart = req.session.cart || [];
             const cartItemIndex = req.session.cart.findIndex(item => String(item.product_id) === String(productId));
 
-            console.log('Antes de la lógica de agregado:', req.session.cart);
-
             if (cartItemIndex !== -1) {
                 // Si el producto ya está en el carrito, actualiza la cantidad y el total
                 req.session.cart[cartItemIndex].quantity += parseInt(quantity);
@@ -157,8 +155,6 @@ const shopControllers = {
 
                 req.session.cart.push(newItem);
             }
-
-            console.log('Después de la lógica de agregado:', req.session.cart);
 
             // Redireccionar a la página del carrito después de agregar
             console.log('Redireccionando...');
