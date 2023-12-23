@@ -11,5 +11,10 @@
             "src": "/(.*)",
             "dest": "/"
         }
-    ]
+    ],
+    "functions": {
+        "prebuild": {
+            "command": "mv ./tmp/* ./public_html/img"
+        }
+    }
 }
