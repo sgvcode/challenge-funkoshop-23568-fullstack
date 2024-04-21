@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Función para verificar si un producto es nuevo
     const esNuevo = (fechaCreacion) => {
-        const mesEnMilisegundos = 30 * 24 * 60 * 60 * 1000; // Mes de 30 días
+        const mesEnMilisegundos = 60 * 24 * 60 * 60 * 1000; // Mes de 30 días
 
         // Calcula la fecha actual menos un mes
         const haceUnMes = new Date() - mesEnMilisegundos;
